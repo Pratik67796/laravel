@@ -1,0 +1,57 @@
+how to download composer for laravel
+1... Download composer
+	(run this in cmd)
+2...php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+3...php -r "if (hash_file('sha384', 'composer-setup.php') === '756890a4488ce9024fc62c56153228907f1545c228516cbf63f885e036d37e9a59d27d63f46af1d4d07ee0f76181c7d3') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"
+4... php composer-setup.php
+
+
+(important)runing laravel using composer
+
+
+
+
+1...composer create-project laravel/laravel project-name
+2...cd example-app (go in project)
+3...php artisan serve(start the server)
+4...php artisan make:controller(controller name)
+5...php artisan make:model (model name)
+//auth with login using api steps to flow
+6..https://github.com/anil-sidhu/laravel-passport-poc
+@extends('headerlink')
+@extends('header')
+@extends('sidebar')
+@extends('footar')
+@extends('footarlink')
+@section('title','Hello Dashboard')
+@section('headerlink')
+@section('header')
+@section('sidebar')
+@section('footar')
+@section('footarlink')
+@endsection
+
+@yield('title')
+
+//login code without session (controller file)
+function userLogin(Request $req)
+    {
+    	$ttt = registation::where('email','=',$req->email)->where('password','=',$req->pass)->exists();
+    	if($ttt){
+    		return redirect('/dashboard');
+    	}else{
+    		return redirect('/loginbody');
+    	}
+    }
+
+//route for login
+Route::post('user',[login::class,'userLogin']);
+
+
+
+
+<?php $users = DB::table('users')
+                     ->select('name')
+                     ->where('email', '=', session('email'))
+                     ->get();
+        ?>
